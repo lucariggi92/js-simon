@@ -18,3 +18,38 @@ Individuate gli elementi di cui avete bisogno per realizzare il programma.
 Immaginate la logica come fosse uno snack: "Dati 2 array di numeri, indica quali e quanti numeri ci sono in comune tra i due array"
 */
 
+//appena clicco il bottone genero 5 numeri e avvio il timer
+const generaBtn = document.querySelector("#genera");
+const randomResult = document.querySelector("#verifica");
+console.log(generaBtn)
+
+const timerElem = document.querySelector("h1")
+
+generaBtn.addEventListener("click", function () {
+    //genera nuemri random/////////////////////////////////////
+    const arrayRandom = [];
+    //genera 5 numeri random
+    for (let i = 0; i < 5; i++) {
+        const randomNum = Math.floor(Math.random() * 9) + 1
+        let currNum = randomNum
+
+        //A samuel non piacciono numeri uguali quindi verifico che se all'interno
+        //ne trovo uno uguale presente nell'array (includes) allora torno indietro col ciclo for di i=1
+        if (arrayRandom.includes(currNum)) {
+            i = i - 1
+        }
+        //in caso contrario pusho nell'array i numeri
+        else {
+            arrayRandom.push(randomNum)
+        }
+    }
+
+    //disattivo il bottone
+    generaBtn.disabled = true;
+
+    ///avvio timer//////////////////////////////////////
+
+    //output-html-console///////////////////////////////
+    //appena ce l'ho tutti li posso mostrare in console e in html
+    console.log(arrayRandom)
+})

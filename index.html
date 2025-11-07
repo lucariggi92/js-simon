@@ -12,28 +12,37 @@
 <body>
     <header class="bg-dark text-light"> esercizio js-simon</header>
     <main class="container border mt-5 p-2 text-center">
-
-        <section> timer</section>
-        <!-- sezione numeri -->
-        <div class="border p-5 text-center">
-            <h1>1 2 3 4 5</h1>
-        </div>
-
-        <!-- sezione input  -->
-        <section>
-            <input type="number" id="num1">
-            <input type="number" id="num2">
-            <input type="number" id="num3">
-            <input type="number" id="num4">
-            <input type="number" id="num5">
+        <!-- timer -->
+        <section class="mb-2">
+            <img src="./img/26626283-timer-icona-vettore-simbolo-design-illustrazione-vettoriale.jpg"
+                class="rounded mx-auto d-block" alt="timer" style="width: 100px;">
+            <div>Timer</div>
         </section>
+        <!-- sezione numeri -->
+        <div class="p-5 border bg-dark mx-5">
 
 
+            <section class="border p-5 text-center d-none" id="numeriRandom">
+                <h1>1 2 3 4 5</h1>
+            </section>
+
+            <!-- sezione input  -->
+            <section class="d-flex justify-content-center gap-3">
+                <input type="number" id="num1" class="col-2 py-3 text-center" style="font-size: 200%;">
+                <input type="number" id="num2" class="col-2 py-3 text-center" style="font-size: 200%;">
+                <input type="number" id="num3" class="col-2 py-3 text-center" style="font-size: 200%;">
+                <input type="number" id="num4" class="col-2 py-3 text-center" style="font-size: 200%;">
+                <input type="number" id="num5" class="col-2 py-3 text-center" style="font-size: 200%;">
+            </section>
+
+        </div>
         <!-- risultato output -->
-        <section>
+        <section class="d-none bg-success text-light text-uppercase">
             <h2>Hai vinto!</h2>
         </section>
-        <button class="btn btn-primary mt-2">Gioca</button>
+        <button class="btn btn-primary my-3" id="genera">Genera numeri</button>
+        <button class="btn btn-secondary my-3 disabled" id="verifica">Verifica</button>
+
     </main>
     <script src="./script.js"></script>
 </body>
