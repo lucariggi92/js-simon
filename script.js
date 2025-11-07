@@ -29,18 +29,20 @@ const numInput5 = document.getElementById("num5")
 const randomNumeri = document.querySelector("h1")
 const timerElem = document.getElementById("timer")
 const verificaBtn = document.querySelector("#verifica")
+const risultatoOutput = document.querySelector("h2")
 console.log(generaBtn)
 
-verificaBtn.disabled =true
-numInput1.disabled =true
-numInput2.disabled =true
-numInput3.disabled =true
-numInput4.disabled =true
-numInput5.disabled =true
+verificaBtn.disabled = true
+numInput1.disabled = true
+numInput2.disabled = true
+numInput3.disabled = true
+numInput4.disabled = true
+numInput5.disabled = true
+let arrayRandom = [];
 
 generaBtn.addEventListener("click", function () {
     //genera nuemri random/////////////////////////////////////
-    const arrayRandom = [];
+
     let cont = 3
     //genera 5 numeri random
     for (let i = 0; i < 5; i++) {
@@ -67,11 +69,7 @@ generaBtn.addEventListener("click", function () {
 
     ///avvio timer//////////////////////////////////////
 
-    const input1 = numInput1.value
-    const input2 = numInput1.value
-    const input3 = numInput1.value
-    const input4 = numInput1.value
-    const input5 = numInput1.value
+
 
     const intervalloID = setInterval(function () {
         if (cont === 0) {
@@ -79,12 +77,13 @@ generaBtn.addEventListener("click", function () {
             timerElem.innerHTML = "Tempo scaduto"
             randomNumeri.innerHTML = "- - - - -";
             numInput1.disabled = false
-             numInput2.disabled = false
-              numInput3.disabled = false
-               numInput4.disabled = false
-                numInput5.disabled = false
-                
-           
+            numInput2.disabled = false
+            numInput3.disabled = false
+            numInput4.disabled = false
+            numInput5.disabled = false
+            verificaBtn.disabled = false
+
+
             clearInterval(intervalloID)
         } else {
             console.log(cont)
@@ -95,13 +94,55 @@ generaBtn.addEventListener("click", function () {
 
 })
 
-verificaBtn.addEventListener("click", function(){
- if (input1 != "" && input2 != "" && input3 != "" && input4 != "" && input5 != "") {
-               console.log("verifica che i numeri corrispano")
-            } 
-            else{
-                alert("numeri manca")
+
+//bottone verifica
+let arrayUserNum = [];
+let indovinati = 0;
+verificaBtn.addEventListener("click", function () {
+    const input1 = parseInt(numInput1.value.trim())
+    const input2 = parseInt(numInput2.value.trim())
+    const input3 = parseInt(numInput3.value.trim())
+    const input4 = parseInt(numInput4.value.trim())
+    const input5 = parseInt(numInput5.value.trim())
+
+    if (input1 === "" || isNaN(input1) ||
+        input2 === "" || isNaN(input2) ||
+        input3 === "" || isNaN(input3) ||
+        input4 === "" || isNaN(input4) ||
+        input5 === "" || isNaN(input5)) {
+
+        alert("verifica che i numeri siano corretti")
+    }
+    else {
+        arrayUserNum = [input1, input2, input3, input4, input5]
+
+        for (let i = 0; i < arrayUserNum.length; i++) {
+            let curUserNum = arrayUserNum[i]
+            for (let j = 0; j < arrayRandom.length; j++) {
+                let curRandomNum = arrayRandom[j];
+                if (curRandomNum === curUserNum)
+                    indovinati = indovinati + 1;
+                console.log(indovinati)
+
             }
+
+        }
+        if (indovinati === 5) {
+           risultatoOutput.innerHTML ="Hai vinto!"
+        }
+        else {
+            risultatoOutput.innerHTML ="Hai perso!"
+        }
+        verificaBtn.disabled = true;
+        generaBtn.disabled = false;
+
+        numInput1.disabled = true
+        numInput2.disabled = true
+        numInput3.disabled = true
+        numInput4.disabled = true
+        numInput5.disabled = true
+
+    }
 
 })
 
@@ -110,14 +151,14 @@ verificaBtn.addEventListener("click", function(){
 
 
 
-            /*
-   
-  if (input1 != "" && input2 != "" && input3 != "" && input4 != "" && input5 != ""){
-    verificaBtn.classList.disabled = false;
-    //verificaBtn.addEventListener("click", function(){
-    console.log("ok puoi proseguire")
+/*
+ 
+if (input1 != "" && input2 != "" && input3 != "" && input4 != "" && input5 != ""){
+verificaBtn.classList.disabled = false;
+//verificaBtn.addEventListener("click", function(){
+console.log("ok puoi proseguire")
 }else{
-    alert("inserisci tutti i numeri")
+alert("inserisci tutti i numeri")
 }
 */
 
