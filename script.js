@@ -21,13 +21,27 @@ Immaginate la logica come fosse uno snack: "Dati 2 array di numeri, indica quali
 //appena clicco il bottone genero 5 numeri e avvio il timer
 const generaBtn = document.querySelector("#genera");
 const randomResult = document.querySelector("#verifica");
+const numInput1 = document.getElementById("num1")
+const numInput2 = document.getElementById("num2")
+const numInput3 = document.getElementById("num3")
+const numInput4 = document.getElementById("num4")
+const numInput5 = document.getElementById("num5")
+const randomNumeri = document.querySelector("h1")
+const timerElem = document.getElementById("timer")
+const verificaBtn = document.querySelector("#verifica")
 console.log(generaBtn)
 
-const timerElem = document.querySelector("h1")
+verificaBtn.disabled =true
+numInput1.disabled =true
+numInput2.disabled =true
+numInput3.disabled =true
+numInput4.disabled =true
+numInput5.disabled =true
 
 generaBtn.addEventListener("click", function () {
     //genera nuemri random/////////////////////////////////////
     const arrayRandom = [];
+    let cont = 3
     //genera 5 numeri random
     for (let i = 0; i < 5; i++) {
         const randomNum = Math.floor(Math.random() * 9) + 1
@@ -44,12 +58,75 @@ generaBtn.addEventListener("click", function () {
         }
     }
 
+    //output-html-console///////////////////////////////
+    //appena ce l'ho tutti li posso mostrare in console e in html
+    console.log(arrayRandom)
+    randomNumeri.innerHTML = arrayRandom.join(" ")
     //disattivo il bottone
     generaBtn.disabled = true;
 
     ///avvio timer//////////////////////////////////////
 
-    //output-html-console///////////////////////////////
-    //appena ce l'ho tutti li posso mostrare in console e in html
-    console.log(arrayRandom)
+    const input1 = numInput1.value
+    const input2 = numInput1.value
+    const input3 = numInput1.value
+    const input4 = numInput1.value
+    const input5 = numInput1.value
+
+    const intervalloID = setInterval(function () {
+        if (cont === 0) {
+            console.log("stop")
+            timerElem.innerHTML = "Tempo scaduto"
+            randomNumeri.innerHTML = "- - - - -";
+            numInput1.disabled = false
+             numInput2.disabled = false
+              numInput3.disabled = false
+               numInput4.disabled = false
+                numInput5.disabled = false
+                
+           
+            clearInterval(intervalloID)
+        } else {
+            console.log(cont)
+            timerElem.innerHTML = cont;
+        }
+        cont = cont - 1;
+    }, 1000);
+
 })
+
+verificaBtn.addEventListener("click", function(){
+ if (input1 != "" && input2 != "" && input3 != "" && input4 != "" && input5 != "") {
+               console.log("verifica che i numeri corrispano")
+            } 
+            else{
+                alert("numeri manca")
+            }
+
+})
+
+
+
+
+
+
+            /*
+   
+  if (input1 != "" && input2 != "" && input3 != "" && input4 != "" && input5 != ""){
+    verificaBtn.classList.disabled = false;
+    //verificaBtn.addEventListener("click", function(){
+    console.log("ok puoi proseguire")
+}else{
+    alert("inserisci tutti i numeri")
+}
+*/
+
+
+
+
+
+
+
+
+
+
